@@ -14,7 +14,7 @@ import { Post } from '../types/post';
 // };
 
 
-const BASE_URL = 'https://web-dev-backend-ak62.onrender.com';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchUsers = async (): Promise<User[]> => {
   const res = await fetch(`${BASE_URL}/users`);
