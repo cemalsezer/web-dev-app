@@ -18,9 +18,9 @@ const PostList = () => {
   }, []);
   
   const handleDelete = async (id: number) => {
-    if (!confirm('Silmek istediğine emin misin?')) return;
+    if (!confirm('Are you sure you want to delete?')) return;
   
-    await fetch(`http://localhost:3000/posts/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts/${id}`, {
       method: 'DELETE',
     });
   
@@ -34,7 +34,7 @@ const PostList = () => {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Posts</h2>
-        <Link to="/posts/new">➕ Yeni Post Ekle</Link>
+        <Link to="/posts/new">➕ Add New Post</Link>
       <ul>
         {posts.map(post => (
           <li key={post.id}>

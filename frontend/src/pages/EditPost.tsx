@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const EditPost = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
@@ -10,25 +10,37 @@ const EditPost = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/${id}`)
-      .then(res => res.json())
-      .then(data => {
+    const fetchPost = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts/${id}`);
+        if (!res.ok) throw new Error('Failed to fetch post');
+        const data = await res.json();
         setTitle(data.title);
         setBody(data.body);
         setLoading(false);
-      });
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+
+    fetchPost();
   }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    await fetch(`http://localhost:3000/posts/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, body }),
-    });
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, body }),
+      });
 
-    navigate('/posts');
+      if (!res.ok) throw new Error('Failed to update post');
+      navigate('/posts');
+    } catch (error) {
+      console.error('Update error:', error);
+    }
   };
 
   if (loading) return <p>Loading...</p>;

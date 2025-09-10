@@ -10,22 +10,27 @@ const AddPost = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    await fetch('http://localhost:3000/posts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title,
-        body,
-        userId: Number(userId),
-      }),
-    });
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title,
+          body,
+          userId: Number(userId),
+        }),
+      });
 
-    navigate('/posts');
+      if (!res.ok) throw new Error('Failed to create post');
+      navigate('/posts');
+    } catch (error) {
+      console.error('Add post error:', error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} style={{ padding: '20px' }}>
-      <h2>Yeni Post Ekle</h2>
+      <h2>Add New Post</h2>
       <div>
         <input
           placeholder="Title"
@@ -48,7 +53,7 @@ const AddPost = () => {
           type="number"
         />
       </div>
-      <button type="submit">Ekle</button>
+      <button type="submit">Add</button>
     </form>
   );
 };
