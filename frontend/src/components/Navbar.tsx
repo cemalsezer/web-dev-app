@@ -19,7 +19,7 @@ const styles = {
   },
   link: {
     textDecoration: 'none',
-    color: '#333',
+    color: '#f6fcffff',
     fontWeight: 'bold',
   },
 };
