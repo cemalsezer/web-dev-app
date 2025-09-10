@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { fetchUsers } from '../services/api';
+import { fetchUsers, addUser } from '../services/api';
 import { User } from '../types/user';
+
 
 const UserList = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -24,13 +25,16 @@ const UserList = () => {
       .finally(() => setLoading(false));
   }, []);
 
-   const handleAddUser = (e: React.FormEvent) => {
-    e.preventDefault();
-    const id = users.length + 1; 
-    const user: User = { id, ...newUser };
-    setUsers([...users, user]);
-    setNewUser({ name: '', username: '', email: '' }); 
-  };
+ const handleAddUser = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const createdUser = await addUser(newUser);
+    setUsers([...users, createdUser]);
+    setNewUser({ name: '', username: '', email: '' });
+  } catch (error) {
+    console.error("User eklenemedi:", error);
+  }
+};
 
   const handleDeleteUser = (id: number) => {
   const updatedUsers = users.filter(user => user.id !== id);

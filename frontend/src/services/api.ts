@@ -13,8 +13,22 @@ import { Post } from '../types/post';
 //   return res.json();
 // };
 
-
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+export const addUser = async (user: Omit<User, 'id'>): Promise<User> => {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to add user');
+  }
+
+  return res.json();
+};
+
 
 export const fetchUsers = async (): Promise<User[]> => {
   const res = await fetch(`${BASE_URL}/users`);
