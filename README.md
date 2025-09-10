@@ -3,7 +3,7 @@
 A simple full-stack blog management app built with:
 
 - **Frontend:** React + Vite + TypeScript   
-- **Backend:** NestJS (Node.js + Express)
+- **Backend:** NestJS 
 
 ## 🌐 Live Links
 
@@ -35,13 +35,15 @@ client/           # React frontend
 ├── src/
 │   ├── components/
 │   │   ├── PostList.tsx
+│   │   ├── UserList.tsx
+│   │   ├── Navbar.tsx
+│   ├── pages
 │   │   ├── AddPost.tsx
 │   │   ├── EditPost.tsx
-│   │   ├── UserList.tsx
-│   │   ├── AddUser.tsx
-│   │   ├── EditUser.tsx
+│   │   ├── Homepage.tsx
 │   └── App.tsx
-│   └── api.ts         
+│   ├── services
+│   │   ├── api.ts
 
 server/           # NestJS backend
 ├── src/
