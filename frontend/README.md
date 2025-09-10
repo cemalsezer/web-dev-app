@@ -1,69 +1,83 @@
-# React + TypeScript + Vite
+# User CRUD App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React + TypeScript application that demonstrates full CRUD functionality for users using data fetched from the [JSONPlaceholder API](https://jsonplaceholder.typicode.com/).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔗 Routing with React Router (`/`, `/users`, `/posts`)
+- 📄 Fetching Users and Posts from external API
+- ✍️ Add / Edit / Delete Users (Local state)
+- 📦 Type-safe data with TypeScript interfaces
+- ✅ ESLint integrated with clean project structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- React
+- TypeScript
+- Vite
+- React Router DOM
+- ESLint (Flat config)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📂 Project Structure
+
+```
+frontend/
+├── components/
+├── pages/
+├── services/
+├── types/
+├── App.tsx
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧪 Getting Started
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Install dependencies:
+
+```bash
+npm install
 ```
+
+### 2. Start the development server:
+
+```bash
+npm run dev
+```
+
+### 3. Open in browser:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🧭 Available Routes
+
+- `/` → Homepage
+- `/users` → View, add, edit, and delete users
+- `/posts` → View posts (read-only)
+
+---
+
+## 🔗 Live Demo
+
+_(Optional)_ Add your deployed Vercel or Netlify link here.
+
+---
+
+## 📌 Notes
+
+- This app uses **local state only** for CRUD operations.
+- No backend or database is connected yet.
+- Backend integration is planned for Phase 2 using NestJS.
+
+---
