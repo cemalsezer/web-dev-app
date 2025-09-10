@@ -114,10 +114,10 @@ const handleUpdateUser = (id: number) => {
       <div>
         <strong>{user.name}</strong> ({user.username}) - {user.email}
         <button onClick={() => startEditing(user)} style={{ marginLeft: '10px' }}>
-          Düzenle
+          Edit
         </button>
         <button onClick={() => handleDeleteUser(user.id)} style={{ marginLeft: '5px', color: 'red' }}>
-          Sil
+          Delete
         </button>
       </div>
     )}
